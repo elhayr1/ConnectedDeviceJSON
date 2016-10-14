@@ -16,14 +16,13 @@ class DevicesParser
 public:
 	DevicesParser(){};
 	void lptstr2str(LPTSTR tch, char* &pch);
-	void getConnectedDevice(
+	char* getDevInfo(
 		__in HDEVINFO hDevInfo,
 		__in SP_DEVINFO_DATA DeviceInfoData,
-		__in PCWSTR Label,
 		__in DWORD Property
 		);
 private:
-
+	
 
 
 };

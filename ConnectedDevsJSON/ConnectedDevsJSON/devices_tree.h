@@ -7,16 +7,17 @@
 class DevicesTree
 {
 public:
-	DevicesTree(){};
+	DevicesTree();
+	~DevicesTree();
 	void feedTree();
 	void printToConsole();
 	bool printToFile(char* filePath);
 	DeviceNode root();
+	void addNode(DeviceNode devNode);
 
 private:
-	DeviceNode _root;
+	DeviceNode *_root;
 	DevicesParser _devParser;
-	void addNode();
 
 };
 

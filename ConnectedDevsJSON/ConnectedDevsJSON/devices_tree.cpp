@@ -1,5 +1,10 @@
 #include "devices_tree.h"
 
+DevicesTree::DevicesTree()
+{
+	_root = NULL;
+}
+
 void DevicesTree::feedTree()
 {
 	HDEVINFO hDevInfo;
@@ -28,7 +33,10 @@ void DevicesTree::feedTree()
 		LPTSTR buffer = NULL;
 		DWORD buffersize = 0;
 
-		_devParser.getConnectedDevice(hDevInfo, DeviceInfoData, L"Friendly name :", SPDRP_FRIENDLYNAME);
+		//_devParser.getDevInfo(hDevInfo, DeviceInfoData, L"Friendly name :", SPDRP_FRIENDLYNAME);
+		char *a = _devParser.getDevInfo(hDevInfo, DeviceInfoData, SPDRP_FRIENDLYNAME);
+		if (a !=NULL)
+			std::cout << "HERE! FREINDLY: "<< a << "\n\n";
 		while (!SetupDiGetDeviceInstanceId(
 			hDevInfo,
 			&DeviceInfoData,
@@ -64,8 +72,8 @@ void DevicesTree::feedTree()
 
 			std::cout << "HERE: " << arr << "\n";
 		}
-		//how to get class???/*/*/*/*/*/*/*/*/*/*/HEREEEEE
-		//print_property(hDevInfo, DeviceInfoData, L"\tClass :", SPDRP_CLASS);
+
+		_devParser.getDevInfo(hDevInfo, DeviceInfoData , SPDRP_CLASS);
 		//print_property(hDevInfo, DeviceInfoData, L"\tClass GUID :", SPDRP_CLASSGUID);
 	}
 
@@ -78,4 +86,9 @@ void DevicesTree::feedTree()
 
 	// Cleanup
 	SetupDiDestroyDeviceInfoList(hDevInfo);
+}
+
+DevicesTree::~DevicesTree()
+{
+	//TODO: delete all nodes in tree!
 }

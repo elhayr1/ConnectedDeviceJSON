@@ -16,10 +16,9 @@ void DevicesParser::lptstr2str(LPTSTR tch, char* &pch) // or (TCHAR* tch, char* 
 }
 
 
-void DevicesParser::getConnectedDevice(
+char* DevicesParser::getDevInfo(
 	__in HDEVINFO hDevInfo,
 	__in SP_DEVINFO_DATA DeviceInfoData,
-	__in PCWSTR Label,
 	__in DWORD Property
 	)
 {
@@ -54,11 +53,16 @@ void DevicesParser::getConnectedDevice(
 		}
 	}
 
-	wprintf(L"%s %s\n", Label, buffer);
+	//wprintf(L"%s %s\n", Label, buffer);
+	
+	char *res = NULL;
 
 	if (buffer)
 	{
+		lptstr2str(buffer, res);
+
 		LocalFree(buffer);
 	}
+	return res;
 }
 
