@@ -197,39 +197,133 @@ void DevicesTree::printNode(DeviceNode *node)
 	std::cout << "-------------------------" << "\n\n";
 }
 
-void DevicesTree::printJSONToConsole(DeviceNode *node)
+void DevicesTree::devicesTreeToJSON(DeviceNode *node, JSONObject & out)
 {
-	char *a = new char[100];
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																		}  ";
-	const wchar_t* EXAMPLE = L"\
-							  { \
-							  	\"string_name\" : \"string\tvalue and a \\\"quote\\\" and a unicode char \\u00BE and a c:\\\\path\\\\ or a \\/unix\\/path\\/ :D\", \
-									\"bool_name\" : true, \
-										\"bool_second\" : FaLsE, \
-											\"null_name\" : nULl, \
-												\"negative\" : -34.276, \
-													\"sub_object\" : { \
-																			\"foo\" : \"abc\", \
-																									 \"bar\" : 1.35e2, \
-																									 						 \"blah\" : { \"a\" : \"A\", \"b\" : \"B\", \"c\" : \"C\" } \
-																															 					}, \
-																																					\"array_letters\" : [ \"a\", \"b\", \"c\", [ 1, 2, 3  ]  ] \
-																																					}    ";
-	JSONValue *value = JSON::Parse(EXAMPLE);
+	if (node->successorsNum() == 0) //device node reached
+	{
+		std::string str;
+		str.append(node->getDevInstId(), node->devInstLen());
 
-	std::wcout << value->Stringify(true).c_str();
+		std::wstring convertor = std::wstring(str.begin(), str.end());
+		const wchar_t* widecstr = convertor.c_str();
+		JSONValue *value = JSON::Parse(widecstr);
 
+		out[L"Instance ID"] = new JSONValue(widecstr);
+		
+		if (node->getDescription() != NULL)
+		{
+			str.clear();
+			str.append(node->getDescription(), node->descLen());
+
+			std::wstring convertor = std::wstring(str.begin(), str.end());
+			const wchar_t* widecstr = convertor.c_str();
+			JSONValue *value = JSON::Parse(widecstr);
+			out[L"Description"] = new JSONValue();
+		}
+		return;
+	}
+	//path node reached
+	if (node->getSuccessor(0)->successorsNum() == 0)
+	{
+		std::string str;
+		str.append(node->getDevInstId(), node->devInstLen());
+
+		std::wstring convertor = std::wstring(str.begin(), str.end());
+		const wchar_t* widecstr = convertor.c_str();
+		JSONValue *value = JSON::Parse(widecstr);
+
+		//out.append(node->getDevInstId(), node->devInstLen());
+		JSONObject subObj;
+		for (int i = 0; i < node->successorsNum(); i++)
+			devicesTreeToJSON(node->getSuccessor(i), subObj);
+
+		out[widecstr] = new JSONValue(subObj);
+	}
+	else
+	{
+		std::string str;
+		str.append(node->getDevInstId(), node->devInstLen());
+
+		std::wstring convertor = std::wstring(str.begin(), str.end());
+		const wchar_t* widecstr = convertor.c_str();
+		JSONValue *value = JSON::Parse(widecstr);
+
+		JSONObject subObj;
+
+		for (int i = 0; i < node->successorsNum(); i++)
+			devicesTreeToJSON(node->getSuccessor(i), subObj);
 
 	
+		out[widecstr] = new JSONValue(subObj);
+		
+
+	}
+
+	//JSONObject root;
+
+	//// Adding a string
+	//root[L"test_string"] = new JSONValue(L"hello world");
+
+	//// Create a random integer array
+	//JSONArray array;
+	//for (int i = 0; i < 10; i++)
+	//	array.push_back(new JSONValue((double)(rand() % 100)));
+	//root[L"sample_array"] = new JSONValue(array);
+
+	//// Create a value
+	//JSONValue *value = new JSONValue(root);
+
+	//// Print it
+	//std::wcout << value->Stringify().c_str();
+
+	//// Clean up
+	//delete value;
 	
-	//if (node->successorsNum() == 0) //bottom node reached
+	//if (node->successorsNum() == 0) //device node reached
 	//{
-	//	printNode(node);
+	//	out.append(" { \"Instance ID\" : \"");
+	//	out.append(node->getDevInstId(), node->devInstLen());
+	//	out.append("\" ");
+	//	if (node->getDescription() != NULL)
+	//	{
+	//		out.append(" , \"Description\" : \"");
+	//		out.append(node->getDescription(), node->descLen());
+	//		out.append(" \" } ");
+	//	}
+	//	else
+	//		out.append(" } ");
 	//	return;
 	//}
-	//printNode(node);
-	//for (int i = 0; i < node->successorsNum(); i++)
-	//	printTree(node->getSuccessor(i));
+	////path node reached
+	//if (node->getSuccessor(0)->successorsNum() == 0)
+	//{
+	//	out.append(" \"");
+	//	out.append(node->getDevInstId(), node->devInstLen());
+	//	out.append("\" : [ ");
+	//	for (int i = 0; i < node->successorsNum(); i++)
+	//		devicesTreeToJSON(node->getSuccessor(i), out);
+	//	out.append(" ] ");
+	//	//out.append("\n");
+	//}
+	//else
+	//{
+	//	if (node->getParent() == NULL)
+	//		out.append(" { ");
+	//	out.append(" \"");
+	//	out.append(node->getDevInstId(), node->devInstLen());
+	//	out.append("\": { ");
+	//	for (int i = 0; i < node->successorsNum(); i++)
+	//		devicesTreeToJSON(node->getSuccessor(i), out);
+	//	out.append(" } ");
+
+	//	out.append("\n");
+
+	//	if (node->getParent() == NULL)
+	//		out.append(" } ");
+
+	//	//out.append("\n");
+	//}
+	
 }
 
 DeviceNode* DevicesTree::root() { return _root; }

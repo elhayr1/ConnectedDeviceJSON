@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <vector>
 #include "JSON.h"
+#include <json.h>
 #include "devices_parser.h"
 #include "device_node.h"
 
@@ -13,10 +14,9 @@ public:
 	DevicesTree();
 	~DevicesTree();
 	void feedTree();
+	void devicesTreeToJSON(DeviceNode *node, JSONObject& out);
 	void printTree(DeviceNode *node);
 	void printNode(DeviceNode *node);
-	void printJSONToConsole(DeviceNode *node);
-	bool printJSONToFile(char* filePath);
 	DeviceNode* root();
 	void addNodePath(char* description,
 					size_t descSize, 

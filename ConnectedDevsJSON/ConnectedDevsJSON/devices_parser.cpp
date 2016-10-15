@@ -16,7 +16,6 @@ size_t DevicesParser::lptstr2str(LPTSTR tch, char* &pch) // or (TCHAR* tch, char
 #endif
 }
 
-
 size_t DevicesParser::getDevInfo(
 	char * &res,
 	__in HDEVINFO hDevInfo,
