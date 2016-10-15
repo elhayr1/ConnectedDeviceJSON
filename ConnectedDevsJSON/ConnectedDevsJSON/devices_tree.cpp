@@ -83,7 +83,7 @@ void DevicesTree::feedTree()
 
 			devInstSize = _devParser.lptstr2str(buffer, devInstId);
 
-			std::cout << "devInstId: " << devInstId << "\n";
+			//std::cout << "devInstId: " << devInstId << "\n";
 		}
 
 		//_devParser.getDevInfo(hDevInfo, DeviceInfoData , SPDRP_CLASS);
@@ -197,9 +197,39 @@ void DevicesTree::printNode(DeviceNode *node)
 	std::cout << "-------------------------" << "\n\n";
 }
 
-void DevicesTree::printJSONToConsole()
+void DevicesTree::printJSONToConsole(DeviceNode *node)
 {
+	char *a = new char[100];
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																		}  ";
+	const wchar_t* EXAMPLE = L"\
+							  { \
+							  	\"string_name\" : \"string\tvalue and a \\\"quote\\\" and a unicode char \\u00BE and a c:\\\\path\\\\ or a \\/unix\\/path\\/ :D\", \
+									\"bool_name\" : true, \
+										\"bool_second\" : FaLsE, \
+											\"null_name\" : nULl, \
+												\"negative\" : -34.276, \
+													\"sub_object\" : { \
+																			\"foo\" : \"abc\", \
+																									 \"bar\" : 1.35e2, \
+																									 						 \"blah\" : { \"a\" : \"A\", \"b\" : \"B\", \"c\" : \"C\" } \
+																															 					}, \
+																																					\"array_letters\" : [ \"a\", \"b\", \"c\", [ 1, 2, 3  ]  ] \
+																																					}    ";
+	JSONValue *value = JSON::Parse(EXAMPLE);
+
+	std::wcout << value->Stringify(true).c_str();
+
+
 	
+	
+	//if (node->successorsNum() == 0) //bottom node reached
+	//{
+	//	printNode(node);
+	//	return;
+	//}
+	//printNode(node);
+	//for (int i = 0; i < node->successorsNum(); i++)
+	//	printTree(node->getSuccessor(i));
 }
 
 DeviceNode* DevicesTree::root() { return _root; }

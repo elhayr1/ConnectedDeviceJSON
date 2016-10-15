@@ -3,14 +3,9 @@
 
 #include <algorithm>
 #include <vector>
-//#include "json.hpp"
-
-// for convenience
-//using json = nlohmann::json;
+#include "JSON.h"
 #include "devices_parser.h"
 #include "device_node.h"
-
-
 
 class DevicesTree
 {
@@ -20,7 +15,7 @@ public:
 	void feedTree();
 	void printTree(DeviceNode *node);
 	void printNode(DeviceNode *node);
-	void printJSONToConsole();
+	void printJSONToConsole(DeviceNode *node);
 	bool printJSONToFile(char* filePath);
 	DeviceNode* root();
 	void addNodePath(char* description,

@@ -83,12 +83,15 @@
     <ClInclude Include="devices_parser.h" />
     <ClInclude Include="devices_tree.h" />
     <ClInclude Include="device_node.h" />
-    <ClInclude Include="json.hpp" />
+    <ClInclude Include="JSON.h" />
+    <ClInclude Include="JSONValue.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="devices_parser.cpp" />
     <ClCompile Include="devices_tree.cpp" />
     <ClCompile Include="device_node.cpp" />
+    <ClCompile Include="JSON.cpp" />
+    <ClCompile Include="JSONValue.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
