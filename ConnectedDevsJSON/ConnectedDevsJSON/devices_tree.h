@@ -1,6 +1,8 @@
 #ifndef DEVICES_TREE_H
 #define DEVICES_TREE_H
 
+#include <algorithm>
+#include <vector>
 #include "devices_parser.h"
 #include "device_node.h"
 
@@ -10,10 +12,15 @@ public:
 	DevicesTree();
 	~DevicesTree();
 	void feedTree();
-	void printToConsole();
-	bool printToFile(char* filePath);
-	DeviceNode root();
-	void addNode(DeviceNode devNode);
+	void printTree(DeviceNode *node);
+	void printNode(DeviceNode *node);
+	void printJSONToConsole();
+	bool printJSONToFile(char* filePath);
+	DeviceNode* root();
+	void addNodePath(char* description,
+					size_t descSize, 
+					char* path, 
+					size_t pathSize);
 
 private:
 	DeviceNode *_root;

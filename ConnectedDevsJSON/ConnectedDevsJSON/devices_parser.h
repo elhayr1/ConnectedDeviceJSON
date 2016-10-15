@@ -15,8 +15,9 @@ class DevicesParser
 {
 public:
 	DevicesParser(){};
-	void lptstr2str(LPTSTR tch, char* &pch);
-	char* getDevInfo(
+	size_t lptstr2str(LPTSTR tch, char* &pch);
+	size_t getDevInfo(
+		char * &res,
 		__in HDEVINFO hDevInfo,
 		__in SP_DEVINFO_DATA DeviceInfoData,
 		__in DWORD Property

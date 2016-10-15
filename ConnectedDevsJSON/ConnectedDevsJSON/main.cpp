@@ -4,5 +4,6 @@ int main()
 {
 	DevicesTree tree;
 	tree.feedTree();
+	tree.printTree(tree.root());
 	return 0;
 }

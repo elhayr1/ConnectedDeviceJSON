@@ -1,6 +1,6 @@
 #include "devices_parser.h"
 
-void DevicesParser::lptstr2str(LPTSTR tch, char* &pch) // or (TCHAR* tch, char* &pch)
+size_t DevicesParser::lptstr2str(LPTSTR tch, char* &pch) // or (TCHAR* tch, char* &pch)
 {
 #ifndef UNICODE
 	std::memcpy(pch, tch, strlen(tch) + 1);
@@ -12,11 +12,13 @@ void DevicesParser::lptstr2str(LPTSTR tch, char* &pch) // or (TCHAR* tch, char* 
 	int len = n - std::count(pch, pch + n, NULL);
 	std::remove(pch, pch + n, NULL);
 	pch[len] = NULL;
+	return len;
 #endif
 }
 
 
-char* DevicesParser::getDevInfo(
+size_t DevicesParser::getDevInfo(
+	char * &res,
 	__in HDEVINFO hDevInfo,
 	__in SP_DEVINFO_DATA DeviceInfoData,
 	__in DWORD Property
@@ -55,14 +57,14 @@ char* DevicesParser::getDevInfo(
 
 	//wprintf(L"%s %s\n", Label, buffer);
 	
-	char *res = NULL;
+	res = NULL;
+	size_t resSize = 0;
 
 	if (buffer)
 	{
-		lptstr2str(buffer, res);
-
+		resSize = lptstr2str(buffer, res);
 		LocalFree(buffer);
 	}
-	return res;
+	return resSize;
 }
 
