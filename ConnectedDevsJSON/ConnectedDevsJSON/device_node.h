@@ -19,7 +19,7 @@ public:
 	DeviceNode* getParent();
 	DeviceNode* getSuccessor(char* path, size_t pathSize);
 	DeviceNode* getSuccessor(int index);
-	void setParent(DeviceNode parent);
+	void setParent(DeviceNode* parent);
 	void setDevInstId(char* instId);
 	void setDescription(char* desc);
 	void addSuccessor(DeviceNode *child);

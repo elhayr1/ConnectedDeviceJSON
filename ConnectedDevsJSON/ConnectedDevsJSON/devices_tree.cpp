@@ -2,7 +2,7 @@
 
 DevicesTree::DevicesTree()
 {
-	_root = new DeviceNode(NULL, NULL, 0, "ROOT", 4, true);
+	_root = new DeviceNode(NULL, "TREE ROOT", 9, NULL, 4, true);
 }
 
 void DevicesTree::feedTree()
@@ -89,10 +89,9 @@ void DevicesTree::feedTree()
 		//_devParser.getDevInfo(hDevInfo, DeviceInfoData , SPDRP_CLASS);
 		//print_property(hDevInfo, DeviceInfoData, L"\tClass GUID :", SPDRP_CLASSGUID);
 
-		if (devInstId != NULL)
-		{
-			addNodePath(desc, descSize, devInstId, devInstSize);
-		}
+
+		addNodePath(desc, descSize, devInstId, devInstSize);
+
 	}
 
 
@@ -117,17 +116,22 @@ void DevicesTree::addNodePath(char* description,
 	for (u_int i = 0; i < pathSize; i++)
 	{
 		charCounter++;
-		if (path[i+1] == '\\')
+		if (path[i] == '\\')
 		{	
+			charCounter--; //don't count slash
+
+			char *pathChar = new char[charCounter];
+			for (u_int i = 0; i < charCounter; i++)
+				pathChar[i] = path[i + prevCharCounter];
+
+			DeviceNode *existedSucc = parent->getSuccessor(pathChar, charCounter);
 			if (parent->successorsNum() == 0 ||
-				parent->getSuccessor(path, charCounter) == NULL)
+				existedSucc == NULL) //node not exist
 			{
-				char *pathChar = new char[charCounter];
-				for (u_int i = 0; i < charCounter; i++)
-					pathChar[i] = path[i + prevCharCounter];
+				//create device node and position in tree
 				DeviceNode *newDevNode = new DeviceNode(
-														parent, 
-														pathChar, 
+														parent,
+														pathChar,
 														charCounter,
 														NULL, 0,
 														true
@@ -135,10 +139,17 @@ void DevicesTree::addNodePath(char* description,
 				parent->addSuccessor(newDevNode);
 				parent = newDevNode;
 			}
-			prevCharCounter += charCounter+1;
+			else
+			{
+				parent = existedSucc;
+				delete pathChar;
+			}
+
+			prevCharCounter += charCounter + 1;
 			charCounter = 0;
 
 		}
+		
 	}
 	//add last node HERE
 	parent->addSuccessor(new DeviceNode(
@@ -151,7 +162,7 @@ void DevicesTree::addNodePath(char* description,
 
 void DevicesTree::printTree(DeviceNode *node)
 {
-	if (node->successorsNum() == 0)
+	if (node->successorsNum() == 0) //bottom node reached
 	{
 		printNode(node);
 		return;
@@ -165,13 +176,30 @@ void DevicesTree::printNode(DeviceNode *node)
 {
 	std::cout << "--------NODE INFO--------" << "\n";
 	if (node->isPathNode())
-		std::cout << "A PathNode\n";
+		std::cout << "Path Node\n";
 	else
-		std::cout << "NOT A PathNode\n";
-	std::string descp(node->getDescription(), node->descLen());
-	std::string path(node->getDevInstId(), node->devInstLen());
-	std::cout << "Path: " << path << "\n";
+		std::cout << "Device Node\n";
+	if (node->getDevInstId() != NULL)
+	{
+		std::string path(node->getDevInstId(), node->devInstLen());
+		std::cout << "Path: " << path << "\n";
+	}
+	if (node->getDescription() != NULL)
+	{
+		std::string descp(node->getDescription(), node->descLen());
+		std::cout << "Description: " << descp << "\n";
+	}
+	if (node->getParent() != NULL && node->getParent()->getDevInstId() != NULL)
+	{
+		std::string father((node->getParent())->getDevInstId(), node->getParent()->devInstLen());
+		std::cout << "Father: " << father << "\n";
+	}
 	std::cout << "-------------------------" << "\n\n";
+}
+
+void DevicesTree::printJSONToConsole()
+{
+	
 }
 
 DeviceNode* DevicesTree::root() { return _root; }

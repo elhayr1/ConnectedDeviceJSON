@@ -3,8 +3,14 @@
 
 #include <algorithm>
 #include <vector>
+//#include "json.hpp"
+
+// for convenience
+//using json = nlohmann::json;
 #include "devices_parser.h"
 #include "device_node.h"
+
+
 
 class DevicesTree
 {
