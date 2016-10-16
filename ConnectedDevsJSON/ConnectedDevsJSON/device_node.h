@@ -23,6 +23,7 @@ public:
 	void setDevInstId(char* instId);
 	void setDescription(char* desc);
 	void addSuccessor(DeviceNode *child);
+	void rmSuccessor(int index);
 	bool isPathNode();
 	size_t devInstLen();
 	size_t descLen();

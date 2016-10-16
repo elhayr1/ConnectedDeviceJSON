@@ -7,6 +7,8 @@
 #include "devices_parser.h"
 #include "device_node.h"
 
+#define DEBUG_MODE false
+
 class DevicesTree
 {
 public:
@@ -25,6 +27,7 @@ public:
 private:
 	DeviceNode *_root;
 	DevicesParser _devParser;
+	void deleteTree(DeviceNode *node);
 
 };
 

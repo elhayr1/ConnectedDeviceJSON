@@ -47,6 +47,7 @@ DeviceNode* DeviceNode::getSuccessor(char* path, size_t pathSize)
 }
 
 void DeviceNode::addSuccessor(DeviceNode *child) {_successors.push_back(child);}
+void DeviceNode::rmSuccessor(int index) { _successors.erase(_successors.begin()+index); }
 DeviceNode* DeviceNode::getParent() { return _parent;}
 void DeviceNode::setParent(DeviceNode *parent) {_parent = parent;}
 void DeviceNode::setDevInstId(char *instId) { _devInstId = instId; }

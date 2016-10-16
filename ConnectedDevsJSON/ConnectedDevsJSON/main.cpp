@@ -7,7 +7,7 @@
 #include "devices_tree.h"
 #include "JSON.h"
 
-//edit next lines in order to print to file
+//EDIT next lines in order to print to file
 #define PRINT_TO_FILE true
 #define FILE_PATH "output_file.txt"
 
@@ -18,12 +18,10 @@ int main()
 	DevicesTree tree;
 	tree.feedTree();
 
-	//enable this line to print devices tree as raw data
-	//tree.printTree(tree.root()); 
+	if (DEBUG_MODE) { tree.printTree(tree.root()); }
 	
 	JSONObject jsonOut;
 	tree.devicesTreeToJSON(tree.root(), jsonOut);
-	
 	JSONValue *out = new JSONValue(jsonOut);
 
 	if (PRINT_TO_FILE)
@@ -34,12 +32,12 @@ int main()
 		{
 			outFile << out->Stringify(true).c_str();
 			if (!outFile.good())
-				std::cout << "\nSome error ocurred while trying to write to file.\n";
+				std::cout << "\nSome error ocurred while trying to write to file.\n\n";
 			else
-				std::cout << "\nWriting connected file to file ended successfuly\n";
+				std::cout << "\nWriting connected devices to file ended successfuly\n\n";
 		}
 		else
-			std::cout << "Error: can't open file at " << FILE_PATH << "\nCheck file path.\n";
+			std::cout << "Error: can't open file at " << FILE_PATH << "\nCheck file path.\n\n";
 	}
 	else
 		std::wcout << out->Stringify(true).c_str();

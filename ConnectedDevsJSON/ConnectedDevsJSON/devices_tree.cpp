@@ -2,7 +2,8 @@
 
 DevicesTree::DevicesTree()
 {
-	_root = new DeviceNode(NULL, "TREE ROOT", 9, NULL, 4, true);
+	_root = new DeviceNode(NULL, "TREE ROOT", 
+							9, NULL, 0, true);
 }
 
 void DevicesTree::feedTree()
@@ -20,12 +21,11 @@ void DevicesTree::feedTree()
 
 	if (INVALID_HANDLE_VALUE == hDevInfo)
 	{
-		// Insert error handling here.
+		if (DEBUG_MODE) { std::cout << "\nError: invalid devices handle value\n"; }
 		return;
 	}
 
 	// Enumerate through all devices in Set.
-
 	DeviceInfoData.cbSize = sizeof(SP_DEVINFO_DATA);
 
 	for (i = 0; SetupDiEnumDeviceInfo(hDevInfo, i, &DeviceInfoData); i++)
@@ -46,11 +46,6 @@ void DevicesTree::feedTree()
 										SPDRP_FRIENDLYNAME
 										);
 		
-		//_devParser.getDevInfo(hDevInfo, DeviceInfoData, L"Friendly name :", SPDRP_FRIENDLYNAME);
-		
-		//if (desc !=NULL)
-		//	std::cout << "HERE! FREINDLY: "<< desc << "\n\n";
-
 		while (!SetupDiGetDeviceInstanceId(
 											hDevInfo,
 											&DeviceInfoData,
@@ -63,45 +58,24 @@ void DevicesTree::feedTree()
 				LocalFree(buffer);
 
 			if (ERROR_INSUFFICIENT_BUFFER == GetLastError())
-			{
-				// Change the buffer size.
-				// Double the size to avoid problems on
-				// W2k MBCS systems per KB 888609.
 				buffer = (LPTSTR)LocalAlloc(LPTR, buffersize * 2);
-			}
 			else
 			{
-				wprintf(L"error: could not get device instance id (0x%x)\n", GetLastError());
+				if (DEBUG_MODE) { wprintf(L"error: could not get device instance id (0x%x)\n", GetLastError()); }
 				return;
 			}
 		}
 
-		
 		if (buffer)
-		{
-			//wprintf(L"\tDeviceInstanceId : %s\n", buffer);
-
 			devInstSize = _devParser.lptstr2str(buffer, devInstId);
 
-			//std::cout << "devInstId: " << devInstId << "\n";
-		}
-
-		//_devParser.getDevInfo(hDevInfo, DeviceInfoData , SPDRP_CLASS);
-		//print_property(hDevInfo, DeviceInfoData, L"\tClass GUID :", SPDRP_CLASSGUID);
-
-
 		addNodePath(desc, descSize, devInstId, devInstSize);
-
 	}
 
 
 	if (NO_ERROR != GetLastError() && ERROR_NO_MORE_ITEMS != GetLastError())
-	{
-		// Insert error handling here.
 		return;
-	}
 
-	// Cleanup
 	SetupDiDestroyDeviceInfoList(hDevInfo);
 }
 
@@ -126,9 +100,9 @@ void DevicesTree::addNodePath(char* description,
 
 			DeviceNode *existedSucc = parent->getSuccessor(pathChar, charCounter);
 			if (parent->successorsNum() == 0 ||
-				existedSucc == NULL) //node not exist
+				existedSucc == NULL) //node doesnt exist in tree 
 			{
-				//create device node and position in tree
+				//create path node and position it in tree
 				DeviceNode *newDevNode = new DeviceNode(
 														parent,
 														pathChar,
@@ -144,14 +118,11 @@ void DevicesTree::addNodePath(char* description,
 				parent = existedSucc;
 				delete pathChar;
 			}
-
 			prevCharCounter += charCounter + 1;
 			charCounter = 0;
-
 		}
-		
 	}
-	//add last node HERE
+	//add device node to tree
 	parent->addSuccessor(new DeviceNode(
 										parent, 
 										path, pathSize,
@@ -191,16 +162,15 @@ void DevicesTree::printNode(DeviceNode *node)
 	}
 	if (node->getParent() != NULL && node->getParent()->getDevInstId() != NULL)
 	{
-		std::string father((node->getParent())->getDevInstId(), node->getParent()->devInstLen());
-		std::cout << "Father: " << father << "\n";
+		std::string parent((node->getParent())->getDevInstId(), node->getParent()->devInstLen());
+		std::cout << "Parent: " << parent << "\n";
 	}
 	std::cout << "-------------------------" << "\n\n";
 }
 
 void DevicesTree::devicesTreeToJSON(DeviceNode *node, JSONObject & out)
-{
-
-		
+{	
+	//convert string to cont wchar_t*
 	std::string strDevId;
 	strDevId.append(node->getDevInstId(), node->devInstLen());
 	std::wstring convertor = std::wstring(strDevId.begin(), strDevId.end());
@@ -208,7 +178,6 @@ void DevicesTree::devicesTreeToJSON(DeviceNode *node, JSONObject & out)
 	
 	if (node->successorsNum() == 0) //device node reached
 	{
-		
 		out[L"Instance ID"] = new JSONValue(deviceVal);
 		if (node->getDescription() != NULL)
 		{
@@ -233,20 +202,36 @@ void DevicesTree::devicesTreeToJSON(DeviceNode *node, JSONObject & out)
 	}
 	else
 	{
-	
 		for (int i = 0; i < node->successorsNum(); i++)
 			devicesTreeToJSON(node->getSuccessor(i), subObj);
 
-	
 		out[deviceVal] = new JSONValue(subObj);
 	}  
 }
 
 DeviceNode* DevicesTree::root() { return _root; }
 
-DevicesTree::~DevicesTree()
+void DevicesTree::deleteTree(DeviceNode *node)
 {
-	//TODO: delete all nodes in tree, 
-	//IN every NODE also delete desctiption and device inst ID
-	//delete pointer if not null
+	if (node->successorsNum() == 0)
+	{
+		if (node->getDescription() != NULL)
+			delete node->getDescription();
+		if (node->getDevInstId() != NULL)
+			delete node->getDevInstId();
+		if (node!=NULL)
+			delete node;
+		return;
+	}
+
+	for (int i = 0; i < node->successorsNum(); i++)
+		deleteTree(node->getSuccessor(i));
+
+	if (node->getParent()!=NULL && node->getDevInstId() != NULL)
+		delete node->getDevInstId();
+	
+	if (node != NULL)
+		delete node;
 }
+
+DevicesTree::~DevicesTree() { deleteTree(_root); }
