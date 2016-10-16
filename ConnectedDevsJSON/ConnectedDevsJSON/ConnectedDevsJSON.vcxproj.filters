@@ -54,4 +54,9 @@
       <Filter>lib</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="output_file.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
 </Project>
