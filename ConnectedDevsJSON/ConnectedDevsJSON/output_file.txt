@@ -1,0 +1,235 @@
+{
+  "TREE ROOT":{
+    "ACPI":{
+      "ACPI0003":{
+        "Instance ID":"ACPI\\ACPI0003\\2&DABA3FF&1"
+      },"FIXEDBUTTON":{
+        "Instance ID":"ACPI\\FIXEDBUTTON\\2&DABA3FF&1"
+      },"GENUINEINTEL_-_INTEL64_FAMILY_6_MODEL_58_-________INTEL(R)_CORE(TM)_I5-3210M_CPU_@_2.50GHZ":{
+        "Description":"","Instance ID":"ACPI\\GENUINEINTEL_-_INTEL64_FAMILY_6_MODEL_58_-________INTEL(R)_CORE(TM)_I5-3210M_CPU_@_2.50GHZ\\_4"
+      },"IDEA0100":{
+        "Instance ID":"ACPI\\IDEA0100\\4&1DB9B812&0"
+      },"INT0800":{
+        "Instance ID":"ACPI\\INT0800\\4&1DB9B812&0"
+      },"INT340E":{
+        "Instance ID":"ACPI\\INT340E\\2&DABA3FF&1"
+      },"INT3F0D":{
+        "Instance ID":"ACPI\\INT3F0D\\4&1DB9B812&0"
+      },"LEN0050":{
+        "Instance ID":"ACPI\\LEN0050\\4&1DB9B812&0"
+      },"LEN0068":{
+        "Instance ID":"ACPI\\LEN0068\\5&15D725F4&0"
+      },"PNP0000":{
+        "Instance ID":"ACPI\\PNP0000\\4&1DB9B812&0"
+      },"PNP0100":{
+        "Instance ID":"ACPI\\PNP0100\\4&1DB9B812&0"
+      },"PNP0103":{
+        "Instance ID":"ACPI\\PNP0103\\0"
+      },"PNP0200":{
+        "Instance ID":"ACPI\\PNP0200\\4&1DB9B812&0"
+      },"PNP0A08":{
+        "Instance ID":"ACPI\\PNP0A08\\0"
+      },"PNP0B00":{
+        "Instance ID":"ACPI\\PNP0B00\\4&1DB9B812&0"
+      },"PNP0C02":{
+        "Instance ID":"ACPI\\PNP0C02\\3"
+      },"PNP0C04":{
+        "Instance ID":"ACPI\\PNP0C04\\4&1DB9B812&0"
+      },"PNP0C09":{
+        "Instance ID":"ACPI\\PNP0C09\\1"
+      },"PNP0C0A":{
+        "Instance ID":"ACPI\\PNP0C0A\\0"
+      },"PNP0C0D":{
+        "Instance ID":"ACPI\\PNP0C0D\\2&DABA3FF&1"
+      },"PNP0C14":{
+        "Instance ID":"ACPI\\PNP0C14\\2"
+      },"THERMALZONE":{
+        "Instance ID":"ACPI\\THERMALZONE\\TZS1"
+      }
+    },"ACPI_HAL":{
+      "PNP0C08":{
+        "Instance ID":"ACPI_HAL\\PNP0C08\\0"
+      }
+    },"BTH":{
+      "MS_BTHBRB":{
+        "Instance ID":"BTH\\MS_BTHBRB\\7&2D5DB58B&0&1"
+      },"MS_BTHLE":{
+        "Instance ID":"BTH\\MS_BTHLE\\7&2D5DB58B&0&0"
+      },"MS_BTHPAN":{
+        "Description":"","Instance ID":"BTH\\MS_BTHPAN\\7&2D5DB58B&0&2"
+      },"MS_RFCOMM":{
+        "Description":"","Instance ID":"BTH\\MS_RFCOMM\\7&2D5DB58B&0&0"
+      }
+    },"DISPLAY":{
+      "LEN4090":{
+        "Instance ID":"DISPLAY\\LEN4090\\4&28173CF0&0&UID67568640"
+      },"SAM08B4":{
+        "Instance ID":"DISPLAY\\SAM08B4\\4&28173CF0&0&UID50725632"
+      }
+    },"HDAUDIO":{
+      "FUNC_01&VEN_10EC&DEV_0269&SUBSYS_17AA5006&REV_1002":{
+        "Instance ID":"HDAUDIO\\FUNC_01&VEN_10EC&DEV_0269&SUBSYS_17AA5006&REV_1002\\4&141C9D4F&0&0001"
+      },"FUNC_01&VEN_8086&DEV_2806&SUBSYS_80860101&REV_1000":{
+        "Instance ID":"HDAUDIO\\FUNC_01&VEN_8086&DEV_2806&SUBSYS_80860101&REV_1000\\4&141C9D4F&0&0301"
+      }
+    },"HID":{
+      "VID_03F0&PID_034A&MI_00":{
+        "Instance ID":"HID\\VID_03F0&PID_034A&MI_00\\8&107799F&0&0000"
+      },"VID_03F0&PID_034A&MI_01&COL01":{
+        "Instance ID":"HID\\VID_03F0&PID_034A&MI_01&COL01\\8&143795DD&0&0000"
+      },"VID_03F0&PID_034A&MI_01&COL02":{
+        "Instance ID":"HID\\VID_03F0&PID_034A&MI_01&COL02\\8&143795DD&0&0001"
+      },"VID_046D&PID_C52B&MI_00":{
+        "Instance ID":"HID\\VID_046D&PID_C52B&MI_00\\8&27DCF89A&0&0000"
+      },"VID_046D&PID_C52B&MI_01&COL01":{
+        "Instance ID":"HID\\VID_046D&PID_C52B&MI_01&COL01\\8&405BAD8&0&0000"
+      },"VID_046D&PID_C52B&MI_01&COL02":{
+        "Instance ID":"HID\\VID_046D&PID_C52B&MI_01&COL02\\8&405BAD8&0&0001"
+      },"VID_046D&PID_C52B&MI_01&COL03":{
+        "Instance ID":"HID\\VID_046D&PID_C52B&MI_01&COL03\\8&405BAD8&0&0002"
+      },"VID_046D&PID_C52B&MI_01&COL04":{
+        "Instance ID":"HID\\VID_046D&PID_C52B&MI_01&COL04\\8&405BAD8&0&0003"
+      },"VID_046D&PID_C52B&MI_02&COL01":{
+        "Instance ID":"HID\\VID_046D&PID_C52B&MI_02&COL01\\8&1BC9471D&0&0000"
+      },"VID_046D&PID_C52B&MI_02&COL02":{
+        "Instance ID":"HID\\VID_046D&PID_C52B&MI_02&COL02\\8&1BC9471D&0&0001"
+      },"VID_046D&PID_C52B&MI_02&COL03":{
+        "Instance ID":"HID\\VID_046D&PID_C52B&MI_02&COL03\\8&1BC9471D&0&0002"
+      }
+    },"HTREE":{
+      "ROOT":{
+        "Instance ID":"HTREE\\ROOT\\0"
+      }
+    },"PCI":{
+      "VEN_10EC&DEV_5209&SUBSYS_500617AA&REV_01":{
+        "Instance ID":"PCI\\VEN_10EC&DEV_5209&SUBSYS_500617AA&REV_01\\4&2634E001&0&00E2"
+      },"VEN_10EC&DEV_8168&SUBSYS_500617AA&REV_07":{
+        "Description":"","Instance ID":"PCI\\VEN_10EC&DEV_8168&SUBSYS_500617AA&REV_07\\4&24FD4A66&0&00E3"
+      },"VEN_14E4&DEV_4727&SUBSYS_060814E4&REV_01":{
+        "Description":"","Instance ID":"PCI\\VEN_14E4&DEV_4727&SUBSYS_060814E4&REV_01\\4&35CC4061&0&00E1"
+      },"VEN_8086&DEV_0154&SUBSYS_500617AA&REV_09":{
+        "Instance ID":"PCI\\VEN_8086&DEV_0154&SUBSYS_500617AA&REV_09\\3&11583659&0&00"
+      },"VEN_8086&DEV_0166&SUBSYS_500617AA&REV_09":{
+        "Instance ID":"PCI\\VEN_8086&DEV_0166&SUBSYS_500617AA&REV_09\\3&11583659&0&10"
+      },"VEN_8086&DEV_1E03&SUBSYS_500617AA&REV_04":{
+        "Instance ID":"PCI\\VEN_8086&DEV_1E03&SUBSYS_500617AA&REV_04\\3&11583659&0&FA"
+      },"VEN_8086&DEV_1E10&SUBSYS_500617AA&REV_C4":{
+        "Instance ID":"PCI\\VEN_8086&DEV_1E10&SUBSYS_500617AA&REV_C4\\3&11583659&0&E0"
+      },"VEN_8086&DEV_1E12&SUBSYS_500617AA&REV_C4":{
+        "Instance ID":"PCI\\VEN_8086&DEV_1E12&SUBSYS_500617AA&REV_C4\\3&11583659&0&E1"
+      },"VEN_8086&DEV_1E14&SUBSYS_500617AA&REV_C4":{
+        "Instance ID":"PCI\\VEN_8086&DEV_1E14&SUBSYS_500617AA&REV_C4\\3&11583659&0&E2"
+      },"VEN_8086&DEV_1E16&SUBSYS_500617AA&REV_C4":{
+        "Instance ID":"PCI\\VEN_8086&DEV_1E16&SUBSYS_500617AA&REV_C4\\3&11583659&0&E3"
+      },"VEN_8086&DEV_1E20&SUBSYS_500617AA&REV_04":{
+        "Instance ID":"PCI\\VEN_8086&DEV_1E20&SUBSYS_500617AA&REV_04\\3&11583659&0&D8"
+      },"VEN_8086&DEV_1E22&SUBSYS_500617AA&REV_04":{
+        "Instance ID":"PCI\\VEN_8086&DEV_1E22&SUBSYS_500617AA&REV_04\\3&11583659&0&FB"
+      },"VEN_8086&DEV_1E26&SUBSYS_500617AA&REV_04":{
+        "Instance ID":"PCI\\VEN_8086&DEV_1E26&SUBSYS_500617AA&REV_04\\3&11583659&0&E8"
+      },"VEN_8086&DEV_1E2D&SUBSYS_500617AA&REV_04":{
+        "Instance ID":"PCI\\VEN_8086&DEV_1E2D&SUBSYS_500617AA&REV_04\\3&11583659&0&D0"
+      },"VEN_8086&DEV_1E31&SUBSYS_500617AA&REV_04":{
+        "Description":"","Instance ID":"PCI\\VEN_8086&DEV_1E31&SUBSYS_500617AA&REV_04\\3&11583659&0&A0"
+      },"VEN_8086&DEV_1E3A&SUBSYS_500617AA&REV_04":{
+        "Instance ID":"PCI\\VEN_8086&DEV_1E3A&SUBSYS_500617AA&REV_04\\3&11583659&0&B0"
+      },"VEN_8086&DEV_1E57&SUBSYS_500617AA&REV_04":{
+        "Instance ID":"PCI\\VEN_8086&DEV_1E57&SUBSYS_500617AA&REV_04\\3&11583659&0&F8"
+      }
+    },"ROOT":{
+      "ACPI_HAL":{
+        "Instance ID":"ROOT\\ACPI_HAL\\0000"
+      },"BASICDISPLAY":{
+        "Instance ID":"ROOT\\BASICDISPLAY\\0000"
+      },"BASICRENDER":{
+        "Instance ID":"ROOT\\BASICRENDER\\0000"
+      },"COMPOSITEBUS":{
+        "Instance ID":"ROOT\\COMPOSITEBUS\\0000"
+      },"KDNIC":{
+        "Description":"","Instance ID":"ROOT\\KDNIC\\0000"
+      },"MSSMBIOS":{
+        "Instance ID":"ROOT\\MSSMBIOS\\0000"
+      },"NDISVIRTUALBUS":{
+        "Instance ID":"ROOT\\NDISVIRTUALBUS\\0000"
+      },"RDPBUS":{
+        "Instance ID":"ROOT\\RDPBUS\\0000"
+      },"SPACEPORT":{
+        "Instance ID":"ROOT\\SPACEPORT\\0000"
+      },"SYSTEM":{
+        "Instance ID":"ROOT\\SYSTEM\\0001"
+      },"UMBUS":{
+        "Instance ID":"ROOT\\UMBUS\\0000"
+      },"VDRVROOT":{
+        "Instance ID":"ROOT\\VDRVROOT\\0000"
+      },"VOLMGR":{
+        "Instance ID":"ROOT\\VOLMGR\\0000"
+      },"WPD":{
+        "Instance ID":"ROOT\\WPD\\0000"
+      }
+    },"SCSI":{
+      "DISK&VEN_SAMSUNG&PROD_SSD_840_EVO_250G":{
+        "Description":"","Instance ID":"SCSI\\DISK&VEN_SAMSUNG&PROD_SSD_840_EVO_250G\\4&322D31BB&0&010000"
+      }
+    },"STORAGE":{
+      "VOLUME":{
+        "Instance ID":"STORAGE\\VOLUME\\{AE67E203-5215-11E6-9D77-806E6F6E6963}#000000001F500000"
+      },"VOLUMESNAPSHOT":{
+        "Instance ID":"STORAGE\\VOLUMESNAPSHOT\\HARDDISKVOLUMESNAPSHOT1"
+      }
+    },"SWD":{
+      "IP_TUNNEL_VBUS":{
+        "Description":"","Instance ID":"SWD\\IP_TUNNEL_VBUS\\ISATAP_0"
+      },"MMDEVAPI":{
+        "Description":"","Instance ID":"SWD\\MMDEVAPI\\MICROSOFTGSWAVETABLESYNTH"
+      },"MSDAS":{
+        "Description":"","Instance ID":"SWD\\MSDAS\\{CE958E9A-424F-4C88-86F4-11314821E75A}"
+      },"PRINTENUM":{
+        "Description":"","Instance ID":"SWD\\PRINTENUM\\{5433F519-7A12-4B84-9C8D-98DC4D0E9932}"
+      },"RADIO":{
+        "Description":"","Instance ID":"SWD\\RADIO\\{3DB5895D-CC28-44B3-AD3D-6F01A782B8D2}"
+      }
+    },"TS_USB_HUB_ENUMERATOR":{
+      "UMB":{
+        "Instance ID":"TS_USB_HUB_ENUMERATOR\\UMB\\2&30D3618&0&TS_USB_HUB"
+      }
+    },"UMB":{
+      "UMB":{
+        "Instance ID":"UMB\\UMB\\1&841921D&0&TSBUS"
+      }
+    },"USB":{
+      "ROOT_HUB20":{
+        "Instance ID":"USB\\ROOT_HUB20\\4&13950B0F&0"
+      },"ROOT_HUB30":{
+        "Instance ID":"USB\\ROOT_HUB30\\4&2CE8855D&0&0"
+      },"VID_03F0&PID_034A":{
+        "Instance ID":"USB\\VID_03F0&PID_034A\\6&19359A0B&0&4"
+      },"VID_03F0&PID_034A&MI_00":{
+        "Instance ID":"USB\\VID_03F0&PID_034A&MI_00\\7&2B1779D&0&0000"
+      },"VID_03F0&PID_034A&MI_01":{
+        "Instance ID":"USB\\VID_03F0&PID_034A&MI_01\\7&2B1779D&0&0001"
+      },"VID_046D&PID_C52B":{
+        "Instance ID":"USB\\VID_046D&PID_C52B\\6&19359A0B&0&1"
+      },"VID_046D&PID_C52B&MI_00":{
+        "Instance ID":"USB\\VID_046D&PID_C52B&MI_00\\7&34D45487&0&0000"
+      },"VID_046D&PID_C52B&MI_01":{
+        "Instance ID":"USB\\VID_046D&PID_C52B&MI_01\\7&34D45487&0&0001"
+      },"VID_046D&PID_C52B&MI_02":{
+        "Instance ID":"USB\\VID_046D&PID_C52B&MI_02\\7&34D45487&0&0002"
+      },"VID_04CA&PID_700C":{
+        "Instance ID":"USB\\VID_04CA&PID_700C\\6&1E18CE49&0&5"
+      },"VID_04CA&PID_700C&MI_00":{
+        "Description":"","Instance ID":"USB\\VID_04CA&PID_700C&MI_00\\7&22E3E54C&0&0000"
+      },"VID_0A5C&PID_21F4":{
+        "Instance ID":"USB\\VID_0A5C&PID_21F4\\A41731C04E5A"
+      },"VID_1A40&PID_0101":{
+        "Instance ID":"USB\\VID_1A40&PID_0101\\5&178C4A12&0&2"
+      },"VID_8087&PID_0024":{
+        "Instance ID":"USB\\VID_8087&PID_0024\\5&222ACF89&0&1"
+      }
+    },"{5D624F94-8850-40C3-A3FA-A4FD2080BAF3}":{
+      "VWIFIMP_WFD":{
+        "Description":"","Instance ID":"{5D624F94-8850-40C3-A3FA-A4FD2080BAF3}\\VWIFIMP_WFD\\5&BEBCA8D&0&11"
+      }
+    }
+  }
+}
