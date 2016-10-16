@@ -2,6 +2,7 @@
 //Created by: Elchay Rauper
 //-------------------------
 
+#include <memory>
 #include <iostream>
 #include <fstream>
 #include "devices_tree.h"
@@ -21,7 +22,8 @@ int main()
 	
 	JSONObject jsonOut;
 	tree.devicesTreeToJSON(tree.root(), jsonOut);
-	JSONValue *out = new JSONValue(jsonOut);
+	
+	std::unique_ptr<JSONValue> out(new JSONValue(jsonOut));
 
 	if (PRINT_TO_FILE)
 	{

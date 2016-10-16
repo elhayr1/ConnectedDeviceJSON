@@ -94,7 +94,7 @@ void DevicesTree::addNodePath(char* description,
 		{	
 			charCounter--; //don't count slash
 
-			char *pathChar = new char[charCounter];
+			auto pathChar = new char[charCounter];
 			for (u_int i = 0; i < charCounter; i++)
 				pathChar[i] = path[i + prevCharCounter];
 
@@ -173,7 +173,7 @@ void DevicesTree::devicesTreeToJSON(DeviceNode *node, JSONObject & out)
 	//convert string to cont wchar_t*
 	std::string strDevId;
 	strDevId.append(node->getDevInstId(), node->devInstLen());
-	std::wstring convertor = std::wstring(strDevId.begin(), strDevId.end());
+	auto convertor = std::wstring(strDevId.begin(), strDevId.end());
 	const wchar_t* deviceVal = convertor.c_str();
 	
 	if (node->successorsNum() == 0) //device node reached
@@ -183,7 +183,7 @@ void DevicesTree::devicesTreeToJSON(DeviceNode *node, JSONObject & out)
 		{
 			std::string strDevDesc;
 			strDevId.append(node->getDescription(), node->descLen());
-			std::wstring convertor = std::wstring(strDevDesc.begin(), strDevDesc.end());
+			auto convertor = std::wstring(strDevDesc.begin(), strDevDesc.end());
 			const wchar_t* deviceVal = convertor.c_str();
 			out[L"Description"] = new JSONValue(deviceVal);
 		}
