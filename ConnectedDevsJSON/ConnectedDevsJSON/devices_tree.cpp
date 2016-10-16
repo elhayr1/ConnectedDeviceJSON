@@ -199,131 +199,47 @@ void DevicesTree::printNode(DeviceNode *node)
 
 void DevicesTree::devicesTreeToJSON(DeviceNode *node, JSONObject & out)
 {
+
+		
+	std::string strDevId;
+	strDevId.append(node->getDevInstId(), node->devInstLen());
+	std::wstring convertor = std::wstring(strDevId.begin(), strDevId.end());
+	const wchar_t* deviceVal = convertor.c_str();
+	
 	if (node->successorsNum() == 0) //device node reached
 	{
-		std::string str;
-		str.append(node->getDevInstId(), node->devInstLen());
-
-		std::wstring convertor = std::wstring(str.begin(), str.end());
-		const wchar_t* widecstr = convertor.c_str();
-		JSONValue *value = JSON::Parse(widecstr);
-
-		out[L"Instance ID"] = new JSONValue(widecstr);
 		
+		out[L"Instance ID"] = new JSONValue(deviceVal);
 		if (node->getDescription() != NULL)
 		{
-			str.clear();
-			str.append(node->getDescription(), node->descLen());
-
-			std::wstring convertor = std::wstring(str.begin(), str.end());
-			const wchar_t* widecstr = convertor.c_str();
-			JSONValue *value = JSON::Parse(widecstr);
-			out[L"Description"] = new JSONValue();
+			std::string strDevDesc;
+			strDevId.append(node->getDescription(), node->descLen());
+			std::wstring convertor = std::wstring(strDevDesc.begin(), strDevDesc.end());
+			const wchar_t* deviceVal = convertor.c_str();
+			out[L"Description"] = new JSONValue(deviceVal);
 		}
 		return;
 	}
+
 	//path node reached
+	JSONObject subObj;
 	if (node->getSuccessor(0)->successorsNum() == 0)
 	{
-		std::string str;
-		str.append(node->getDevInstId(), node->devInstLen());
-
-		std::wstring convertor = std::wstring(str.begin(), str.end());
-		const wchar_t* widecstr = convertor.c_str();
-		JSONValue *value = JSON::Parse(widecstr);
-
-		//out.append(node->getDevInstId(), node->devInstLen());
-		JSONObject subObj;
+		
 		for (int i = 0; i < node->successorsNum(); i++)
 			devicesTreeToJSON(node->getSuccessor(i), subObj);
 
-		out[widecstr] = new JSONValue(subObj);
+		out[deviceVal] = new JSONValue(subObj);
 	}
 	else
 	{
-		std::string str;
-		str.append(node->getDevInstId(), node->devInstLen());
-
-		std::wstring convertor = std::wstring(str.begin(), str.end());
-		const wchar_t* widecstr = convertor.c_str();
-		JSONValue *value = JSON::Parse(widecstr);
-
-		JSONObject subObj;
-
+	
 		for (int i = 0; i < node->successorsNum(); i++)
 			devicesTreeToJSON(node->getSuccessor(i), subObj);
 
 	
-		out[widecstr] = new JSONValue(subObj);
-		
-
-	}
-
-	//JSONObject root;
-
-	//// Adding a string
-	//root[L"test_string"] = new JSONValue(L"hello world");
-
-	//// Create a random integer array
-	//JSONArray array;
-	//for (int i = 0; i < 10; i++)
-	//	array.push_back(new JSONValue((double)(rand() % 100)));
-	//root[L"sample_array"] = new JSONValue(array);
-
-	//// Create a value
-	//JSONValue *value = new JSONValue(root);
-
-	//// Print it
-	//std::wcout << value->Stringify().c_str();
-
-	//// Clean up
-	//delete value;
-	
-	//if (node->successorsNum() == 0) //device node reached
-	//{
-	//	out.append(" { \"Instance ID\" : \"");
-	//	out.append(node->getDevInstId(), node->devInstLen());
-	//	out.append("\" ");
-	//	if (node->getDescription() != NULL)
-	//	{
-	//		out.append(" , \"Description\" : \"");
-	//		out.append(node->getDescription(), node->descLen());
-	//		out.append(" \" } ");
-	//	}
-	//	else
-	//		out.append(" } ");
-	//	return;
-	//}
-	////path node reached
-	//if (node->getSuccessor(0)->successorsNum() == 0)
-	//{
-	//	out.append(" \"");
-	//	out.append(node->getDevInstId(), node->devInstLen());
-	//	out.append("\" : [ ");
-	//	for (int i = 0; i < node->successorsNum(); i++)
-	//		devicesTreeToJSON(node->getSuccessor(i), out);
-	//	out.append(" ] ");
-	//	//out.append("\n");
-	//}
-	//else
-	//{
-	//	if (node->getParent() == NULL)
-	//		out.append(" { ");
-	//	out.append(" \"");
-	//	out.append(node->getDevInstId(), node->devInstLen());
-	//	out.append("\": { ");
-	//	for (int i = 0; i < node->successorsNum(); i++)
-	//		devicesTreeToJSON(node->getSuccessor(i), out);
-	//	out.append(" } ");
-
-	//	out.append("\n");
-
-	//	if (node->getParent() == NULL)
-	//		out.append(" } ");
-
-	//	//out.append("\n");
-	//}
-	
+		out[deviceVal] = new JSONValue(subObj);
+	}  
 }
 
 DeviceNode* DevicesTree::root() { return _root; }

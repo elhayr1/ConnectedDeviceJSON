@@ -4,7 +4,6 @@
 #include <algorithm>
 #include <vector>
 #include "JSON.h"
-#include <json.h>
 #include "devices_parser.h"
 #include "device_node.h"
 
