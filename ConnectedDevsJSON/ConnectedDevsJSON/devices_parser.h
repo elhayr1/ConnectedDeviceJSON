@@ -22,10 +22,6 @@ public:
 						__in SP_DEVINFO_DATA DeviceInfoData,
 						__in DWORD Property
 						);
-private:
-	
-
-
 };
 
 #endif

@@ -8,12 +8,11 @@
 #include "JSON.h"
 
 //EDIT next lines in order to print to file
-#define PRINT_TO_FILE true
+#define PRINT_TO_FILE false
 #define FILE_PATH "output_file.txt"
 
 int main()
 {
-	
 	//get data structure ready
 	DevicesTree tree;
 	tree.feedTree();
