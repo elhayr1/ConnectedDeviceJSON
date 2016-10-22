@@ -1,3 +1,5 @@
+This app prints a JSON representation of the current connected devices tree. 
+
 Software design summary, and some guidelines:
 
 devices_parser - extract connected devices data.
